@@ -2,25 +2,25 @@ package model;
 
 public class Categorie {
 	
-	private String name,description;
+	private String title,description;
 	
 	public Categorie(){
 		super();
 	}
 
-	public Categorie(String name, String description) {
+	public Categorie(String title, String description) {
 		super();
-		this.setName(name);
+		this.setTitle(title);
 		this.setDescription(description);
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	private void setName(String name) {
-		if(name== null || name.isEmpty())throw new ModelException("mag niet leeg zijn");
-		this.name = name;
+	private void setTitle(String title) {
+		if(title== null || title.isEmpty())throw new ModelException("mag niet leeg zijn");
+		this.title = title;
 	}
 
 	public String getDescription() {

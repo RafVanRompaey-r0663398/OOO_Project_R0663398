@@ -1,14 +1,18 @@
 package model.db;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Categorie;
 
 public class DbCategorieRepository {
+	
+	/*observable list gebruiken ma wie dafuq weet hoe da moet*/
 
-	private Map<String, Categorie> map = new HashMap<String, Categorie>();
+	private List list = new ArrayList<Categorie>();
+	private ObservableList oList = FXCollections.observableArrayList(list);
 	
 	public DbCategorieRepository(){
 		Categorie mokup1 = new Categorie("Design principles","The SOLID design principles");
@@ -21,20 +25,21 @@ public class DbCategorieRepository {
 		this.addCategorieToDb(mokup4);
 	}
 
-	public Map<String, Categorie> getMap() {
-		return map;
+	public List getList() {
+		return this.list;
+	}
+	
+	public ObservableList<Categorie> getOList() {
+		return this.oList;
 	}
 
-	public void setMap(Map<String, Categorie> map) {
-		this.map = map;
+	public void setList(ArrayList list) {
+		this.list = list;
 	}
 	
 	public void addCategorieToDb(Categorie categorie){
-		this.map.put(categorie.getName(), categorie);
-	}
-	
-	public ArrayList<Categorie> getAllCategorieën(){
-		return (ArrayList<Categorie>) this.getMap();
+		this.list.add(categorie);
+		this.oList.add(categorie);
 	}
 	
 }
