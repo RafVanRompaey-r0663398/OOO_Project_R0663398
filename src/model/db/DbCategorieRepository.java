@@ -25,20 +25,15 @@ public class DbCategorieRepository {
 		this.addCategorieToDb(mokup4);
 	}
 
-	public List getList() {
-		return this.list;
-	}
-	
 	public ObservableList<Categorie> getOList() {
 		return this.oList;
 	}
 
-	public void setList(ArrayList list) {
-		this.list = list;
+	public void setList(ObservableList<Categorie> oList) {
+		this.oList = oList;
 	}
 	
 	public void addCategorieToDb(Categorie categorie){
-		this.list.add(categorie);
 		this.oList.add(categorie);
 	}
 	

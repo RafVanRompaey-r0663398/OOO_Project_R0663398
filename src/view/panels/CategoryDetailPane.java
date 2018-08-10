@@ -49,5 +49,12 @@ public class CategoryDetailPane extends GridPane {
 	public void setCancelAction(EventHandler<ActionEvent> cancelAction) {
 		btnCancel.setOnAction(cancelAction);
 	}
+	
+	public String getTitleFieldString(){
+		return this.titleField.getText();
+	}
+	public String getDescriptionFieldString(){
+		return this.descriptionField.getText();
+	}
 
 }

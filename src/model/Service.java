@@ -22,6 +22,10 @@ public class Service {
 	public ObservableList getObserverList(){
 		return this.categorie.getOList();
 	}
+	
+	public void AddCategory(Categorie categorie){
+		this.categorie.addCategorieToDb(categorie);
+	}
 
 	
 	
