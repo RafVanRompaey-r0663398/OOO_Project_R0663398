@@ -16,6 +16,9 @@ public class PopUp {
 		this.setTitle(title);
 		this.setHeigth(heigth);
 		this.setLegth(length);
+		stage.setTitle(this.title);
+		Scene scene = new Scene(this.pane,this.legth,this.heigth);
+		stage.setScene(scene);
 	}
 
 	public CategoryDetailPane getPane() {
@@ -51,9 +54,6 @@ public class PopUp {
 	}
 	
 	public void showPopUp(){
-		stage.setTitle(this.title);
-		Scene scene = new Scene(this.pane,this.legth,this.heigth);
-		stage.setScene(scene);
 		stage.show();
 	}
 	public void closePopUp(){

@@ -1,7 +1,7 @@
 package controller;
 
 import controller.handlers.CancelActionHandler;
-import controller.handlers.NewActionHandler;
+import controller.handlers.NewCatgeoryActionHandler;
 import controller.handlers.SaveActionHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,27 +20,29 @@ import view.panels.TestPane;
 public class Controller {
 
 	private Service service;
-	private NewActionHandler newAction;
+	private NewCatgeoryActionHandler newAction;
 	private CancelActionHandler cancelAction;
 	private SaveActionHandler saveAction;
 	private PopUp addCategorie;
+	private PopUp addVraag;
 
 	public Controller() {
 		this.service = new Service();
-		this.newAction = new NewActionHandler();
+		this.newAction = new NewCatgeoryActionHandler();
 		this.cancelAction = new CancelActionHandler();
 	}
 
 	public void start(Stage primaryStage) {
 
 		try {
-			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane();
+			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(service);
 			QuestionDetailPane questionDetailPane = new QuestionDetailPane();
 
-			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(service.getObserverList());
+			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(service);
 			CategoryDetailPane categoryDetailPanel = new CategoryDetailPane();
 
 			this.addCategorie = new PopUp(categoryDetailPanel, "Category add", 200, 300);
+			/*this.addVraag = new PopUp(questionDetailPane, "Category add", 200, 300);*/
 
 			/* set new action handler */
 			newAction.setCategoryDetailPane(addCategorie);

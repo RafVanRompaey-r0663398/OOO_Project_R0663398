@@ -14,6 +14,8 @@ public class CancelActionHandler implements EventHandler<ActionEvent> {
 	
 	@Override
 	public void handle(ActionEvent event) {
+		this.CDPane.getPane().clearDescriptionFieldString();
+		this.CDPane.getPane().clearTitleFieldString();
 		this.CDPane.closePopUp();
 	}
 	

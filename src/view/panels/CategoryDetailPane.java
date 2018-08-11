@@ -17,7 +17,7 @@ public class CategoryDetailPane extends GridPane {
 	public CategoryDetailPane() {
 		this.setPrefHeight(150);
 		this.setPrefWidth(300);
-		
+
 		this.setPadding(new Insets(5, 5, 5, 5));
 		this.setVgap(5);
 		this.setHgap(5);
@@ -49,12 +49,25 @@ public class CategoryDetailPane extends GridPane {
 	public void setCancelAction(EventHandler<ActionEvent> cancelAction) {
 		btnCancel.setOnAction(cancelAction);
 	}
-	
-	public String getTitleFieldString(){
-		return this.titleField.getText();
+
+	public String getTitleFieldString() {
+		String result = this.titleField.getText();
+		this.titleField.clear();
+		return result;
 	}
-	public String getDescriptionFieldString(){
-		return this.descriptionField.getText();
+
+	public String getDescriptionFieldString() {
+		String result = this.descriptionField.getText();
+		this.descriptionField.clear();
+		return result;
+	}
+
+	public void clearTitleFieldString() {
+		this.titleField.clear();
+	}
+
+	public void clearDescriptionFieldString() {
+		this.descriptionField.clear();
 	}
 
 }
