@@ -2,13 +2,13 @@ package controller.handlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import view.panels.PopUp;
+import view.panels.CDPPopUp;
 
-public class NewCatgeoryActionHandler implements EventHandler<ActionEvent> {
+public class NewCatgeorieActionHandler implements EventHandler<ActionEvent> {
 
-	private PopUp CDPane;
+	private CDPPopUp CDPane;
 
-	public NewCatgeoryActionHandler() {
+	public NewCatgeorieActionHandler() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -17,7 +17,7 @@ public class NewCatgeoryActionHandler implements EventHandler<ActionEvent> {
 		CDPane.showPopUp();
 	}
 
-	public void setCategoryDetailPane(PopUp CDPane) {
+	public void setCategoryDetailPane(CDPPopUp CDPane) {
 		this.CDPane = CDPane;
 	}
 

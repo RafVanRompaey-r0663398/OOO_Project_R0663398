@@ -4,15 +4,15 @@ import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.Categorie;
-import view.panels.PopUp;
+import view.panels.CDPPopUp;
 
-public class SaveActionHandler implements EventHandler<ActionEvent> {
+public class SaveCategorieActionHandler implements EventHandler<ActionEvent> {
 
-	private PopUp CDPane;
+	private CDPPopUp CDPane;
 	private Controller controller;
 	private Categorie categorie;
 
-	public SaveActionHandler(PopUp CDPane, Controller controller) {
+	public SaveCategorieActionHandler(CDPPopUp CDPane, Controller controller) {
 		this.CDPane = CDPane;
 		this.controller = controller;
 	}
@@ -22,7 +22,7 @@ public class SaveActionHandler implements EventHandler<ActionEvent> {
 		String title = this.CDPane.getPane().getTitleFieldString();
 		String description = this.CDPane.getPane().getDescriptionFieldString();
 		categorie = new Categorie(title, description);
-		this.controller.getService().AddCategory(categorie);
+		this.controller.getService().addCategory(categorie);
 		this.CDPane.closePopUp();
 	}
 	

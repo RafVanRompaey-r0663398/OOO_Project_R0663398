@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import model.Service;
 
 public class QuestionDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
@@ -18,19 +19,21 @@ public class QuestionDetailPane extends GridPane {
 	private TextField questionField, statementField, feedbackField;
 	private Button btnAdd, btnRemove;
 	private ComboBox categoryField;
+	private Service service;
 
-	public QuestionDetailPane() {
+	public QuestionDetailPane(Service service) {
+		this.service=service;
 		this.setPrefHeight(300);
 		this.setPrefWidth(320);
-		
+
 		this.setPadding(new Insets(5, 5, 5, 5));
-        this.setVgap(5);
-        this.setHgap(5);
-        
+		this.setVgap(5);
+		this.setHgap(5);
+
 		add(new Label("Question: "), 0, 0, 1, 1);
 		questionField = new TextField();
 		add(questionField, 1, 0, 2, 1);
-		
+
 		add(new Label("Statement: "), 0, 1, 1, 1);
 		statementField = new TextField();
 		add(statementField, 1, 1, 2, 1);
@@ -53,6 +56,7 @@ public class QuestionDetailPane extends GridPane {
 
 		add(new Label("Category: "), 0, 9, 1, 1);
 		categoryField = new ComboBox();
+		categoryField.getItems().addAll(service.getMainCategorieObserverList());
 		add(categoryField, 1, 9, 2, 1);
 
 		add(new Label("Feedback: "), 0, 10, 1, 1);
@@ -67,7 +71,7 @@ public class QuestionDetailPane extends GridPane {
 		btnOK.isDefaultButton();
 		btnOK.setText("Save");
 		add(btnOK, 1, 11, 2, 1);
-		
+
 	}
 
 	public void setSaveAction(EventHandler<ActionEvent> saveAction) {
@@ -88,5 +92,32 @@ public class QuestionDetailPane extends GridPane {
 		@Override
 		public void handle(ActionEvent e) {
 		}
+	}
+
+	public void clearFields() {
+		this.statementField.clear();
+		this.feedbackField.clear();
+		this.statementsArea.clear();
+		this.questionField.clear();
+	}
+	
+	public String getCategorieText() {
+		return this.categoryField.getValue().toString();
+	}
+
+	public String getQuestionText() {
+		return this.questionField.getText();
+	}
+
+	public String getStatementText() {
+		return this.statementField.getText();
+	}
+
+	public String getFeedbackText() {
+		return this.feedbackField.getText();
+	}
+
+	public String getStatementsAreaText() {
+		return this.statementsArea.getText();
 	}
 }

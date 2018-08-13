@@ -4,14 +4,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class PopUp {
+public class CDPPopUp {
 	
 	private CategoryDetailPane pane;
 	private int heigth, legth;
 	private String title;
 	Stage stage = new Stage();
 	
-	public PopUp(CategoryDetailPane pane,String title,int heigth,int length){
+	public CDPPopUp(CategoryDetailPane pane,String title,int heigth,int length){
 		this.setPane(pane);
 		this.setTitle(title);
 		this.setHeigth(heigth);

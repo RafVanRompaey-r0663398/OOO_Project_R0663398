@@ -1,6 +1,5 @@
 package view.panels;
 
-import javax.xml.ws.Service;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,13 +11,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import model.Service;
 
 public class QuestionOverviewPane extends GridPane {
 	private TableView table;
 	private Button btnNew;
 	private Service service;
 	
-	public QuestionOverviewPane(model.Service service) {
+	public QuestionOverviewPane(Service service) {
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);

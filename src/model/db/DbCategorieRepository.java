@@ -11,13 +11,13 @@ public class DbCategorieRepository{
 	
 	/*observable list gebruiken ma wie dafuq weet hoe da moet*/
 
-	private List list = new ArrayList<Categorie>();
-	private ObservableList oList = FXCollections.observableArrayList(list);
+	private List<Categorie> list = new ArrayList<Categorie>();
+	private ObservableList<Categorie> oList = FXCollections.observableArrayList(list);
 	
 	public DbCategorieRepository(){
 		Categorie mockup1 = new Categorie("Design principles","The SOLID design principles");
 		this.addCategorieToDb(mockup1);
-		Categorie mockup2 = new Categorie("Design principles","Design patterns discussed this year");
+		Categorie mockup2 = new Categorie("Design patterns","Design patterns discussed this year");
 		this.addCategorieToDb(mockup2);
 		Categorie mockup3 = new Categorie("Java","Java extra's");
 		this.addCategorieToDb(mockup3);
@@ -27,6 +27,15 @@ public class DbCategorieRepository{
 
 	public ObservableList<Categorie> getOList() {
 		return this.oList;
+	}
+	
+	public ObservableList<String> getOListMainCategories() {
+		List<String> result = new ArrayList<String>();
+		for(Categorie categorie: this.oList){
+			result.add(categorie.getTitle());
+		}
+		ObservableList<String> Olist = FXCollections.observableArrayList(result);
+		return Olist;
 	}
 
 	public void setList(ObservableList<Categorie> oList) {

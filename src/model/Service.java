@@ -30,16 +30,23 @@ public class Service {
 		this.vragen = vragen;
 	}
 	
-	public ObservableList getCategorieObserverList(){
+	public ObservableList<Categorie> getCategorieObserverList(){
 		return this.categorie.getOList();
 	}
+	public ObservableList<String> getMainCategorieObserverList(){
+		return this.categorie.getOListMainCategories();
+	}
 	
-	public ObservableList getVragenObserverList(){
+	public ObservableList<Vraag> getVragenObserverList(){
 		return this.vragen.getOList();
 	}
 	
-	public void AddCategory(Categorie categorie){
+	public void addCategory(Categorie categorie){
 		this.categorie.addCategorieToDb(categorie);
+	}
+	
+	public void addVraag(Vraag vraag){
+		this.vragen.addVraagToDb(vraag);
 	}
 
 	

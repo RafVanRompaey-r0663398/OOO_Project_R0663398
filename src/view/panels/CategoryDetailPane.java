@@ -8,13 +8,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import model.Service;
 
 public class CategoryDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
 	private TextField titleField, descriptionField;
-	private ComboBox categoryField;
+	private ComboBox<String> categoryField;
+	private Service service;
 
-	public CategoryDetailPane() {
+	public CategoryDetailPane(Service service) {
+		this.service=service;
 		this.setPrefHeight(150);
 		this.setPrefWidth(300);
 
@@ -31,7 +34,8 @@ public class CategoryDetailPane extends GridPane {
 		this.add(descriptionField, 1, 1, 1, 1);
 
 		this.add(new Label("Main Category:"), 0, 2, 1, 1);
-		categoryField = new ComboBox<>();
+		categoryField = new ComboBox<String>();
+		categoryField.getItems().addAll(service.getMainCategorieObserverList());
 		this.add(categoryField, 1, 2, 1, 1);
 
 		btnCancel = new Button("Cancel");
@@ -62,12 +66,8 @@ public class CategoryDetailPane extends GridPane {
 		return result;
 	}
 
-	public void clearTitleFieldString() {
+	public void clearFields() {
 		this.titleField.clear();
-	}
-
-	public void clearDescriptionFieldString() {
 		this.descriptionField.clear();
 	}
-
 }

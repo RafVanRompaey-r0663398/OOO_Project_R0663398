@@ -1,8 +1,11 @@
 package controller;
 
-import controller.handlers.CancelActionHandler;
-import controller.handlers.NewCatgeoryActionHandler;
-import controller.handlers.SaveActionHandler;
+import controller.handlers.CancelCategorieActionHandler;
+import controller.handlers.CancelVraagActionHandler;
+import controller.handlers.NewCatgeorieActionHandler;
+import controller.handlers.NewVraagActionHandler;
+import controller.handlers.SaveCategorieActionHandler;
+import controller.handlers.SaveVraagActionHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -12,7 +15,8 @@ import view.panels.AssesMainPane;
 import view.panels.CategoryDetailPane;
 import view.panels.CategoryOverviewPane;
 import view.panels.MessagePane;
-import view.panels.PopUp;
+import view.panels.QDPPopUp;
+import view.panels.CDPPopUp;
 import view.panels.QuestionDetailPane;
 import view.panels.QuestionOverviewPane;
 import view.panels.TestPane;
@@ -20,39 +24,52 @@ import view.panels.TestPane;
 public class Controller {
 
 	private Service service;
-	private NewCatgeoryActionHandler newAction;
-	private CancelActionHandler cancelAction;
-	private SaveActionHandler saveAction;
-	private PopUp addCategorie;
-	private PopUp addVraag;
+	private NewCatgeorieActionHandler newCategorieAction;
+	private NewVraagActionHandler newVraagAction;
+	private CancelCategorieActionHandler cancelCategorieAction;
+	private CancelVraagActionHandler cancelVraagAction;
+	private SaveCategorieActionHandler saveCategorieAction;
+	private SaveVraagActionHandler saveVraagAction;
+	private CDPPopUp addCategorie;
+	private QDPPopUp addVraag;
 
 	public Controller() {
 		this.service = new Service();
-		this.newAction = new NewCatgeoryActionHandler();
-		this.cancelAction = new CancelActionHandler();
+		this.newCategorieAction = new NewCatgeorieActionHandler();
+		this.newVraagAction = new NewVraagActionHandler();
+		this.cancelCategorieAction = new CancelCategorieActionHandler();
+		this.cancelVraagAction = new CancelVraagActionHandler();
 	}
 
 	public void start(Stage primaryStage) {
 
 		try {
-			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(service);
-			QuestionDetailPane questionDetailPane = new QuestionDetailPane();
+			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.service);
+			QuestionDetailPane questionDetailPane = new QuestionDetailPane(this.service);
 
-			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(service);
-			CategoryDetailPane categoryDetailPanel = new CategoryDetailPane();
+			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(this.service);
+			CategoryDetailPane categoryDetailPanel = new CategoryDetailPane(this.service);
 
-			this.addCategorie = new PopUp(categoryDetailPanel, "Category add", 200, 300);
-			/*this.addVraag = new PopUp(questionDetailPane, "Category add", 200, 300);*/
-
-			/* set new action handler */
-			newAction.setCategoryDetailPane(addCategorie);
-			categoryOverviewPanel.setNewAction(newAction);
-			/* set Cancel handler */
-			cancelAction.setCategoryDetailPane(addCategorie);
-			categoryDetailPanel.setCancelAction(cancelAction);
-			/*set save action handler*/
-			this.saveAction = new SaveActionHandler(addCategorie, this);
-			categoryDetailPanel.setSaveAction(saveAction);
+			this.addCategorie = new CDPPopUp(categoryDetailPanel, "Category add", 200, 300);
+			this.addVraag = new QDPPopUp(questionDetailPane, "Question add", 300, 500);
+			/* set new Categorie action handler */
+			newCategorieAction.setCategoryDetailPane(addCategorie);
+			categoryOverviewPanel.setNewAction(newCategorieAction);
+			/* set new vraag action handler */
+			newVraagAction.setCategoryDetailPane(addVraag);
+			questionOverviewPane.setNewAction(newVraagAction);
+			/* set Cancel Categorie handler */
+			cancelCategorieAction.setCategoryDetailPane(addCategorie);
+			categoryDetailPanel.setCancelAction(cancelCategorieAction);
+			/* set Cancel vraag handler */
+			cancelVraagAction.setCancelVraagActionHandler(addVraag);
+			questionDetailPane.setCancelAction(cancelVraagAction);
+			/*set save Categorie action handler*/
+			this.saveCategorieAction = new SaveCategorieActionHandler(addCategorie, this);
+			categoryDetailPanel.setSaveAction(saveCategorieAction);
+			/*set save vraag action handler*/
+			this.saveVraagAction = new SaveVraagActionHandler(addVraag, this);
+			questionDetailPane.setSaveAction(saveVraagAction);
 			/* ______________________ */
 
 			TestPane testPane = new TestPane();
