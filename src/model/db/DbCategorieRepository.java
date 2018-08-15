@@ -31,6 +31,7 @@ public class DbCategorieRepository{
 	
 	public ObservableList<String> getOListMainCategories() {
 		List<String> result = new ArrayList<String>();
+		result.add("No Main Category");
 		for(Categorie categorie: this.oList){
 			result.add(categorie.getTitle());
 		}

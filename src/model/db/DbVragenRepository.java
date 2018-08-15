@@ -14,9 +14,14 @@ public class DbVragenRepository{
 	private ObservableList oList = FXCollections.observableArrayList(list);
 	
 	public DbVragenRepository(){
-		Vraag mockUp1 = new Vraag("Welk patroon defineert een familie van algoritmes, kapselt ze in en maakt ze verwiselbaar?", "Design patterns");
+		 List<String> mockUp1list = new ArrayList<String>();
+		 mockUp1list.add("strategy");
+		 mockUp1list.add("state");
+		 mockUp1list.add("singelton");
+		 mockUp1list.add("strategy");
+		Vraag mockUp1 = new Vraag("Welk patroon defineert een familie van algoritmes, kapselt ze in en maakt ze verwiselbaar?", "Design patterns", "Strategy", mockUp1list);
 		this.addVraagToDb(mockUp1);
-		Vraag mockUp2 = new Vraag("Welk ontwerp principe is het minste van toepasing op het strategy patroon?","Design principes");
+		Vraag mockUp2 = new Vraag("Welk ontwerp principe is het minste van toepasing op het strategy patroon?","Design principes","singelton", mockUp1list);
 		this.addVraagToDb(mockUp2);
 		
 	}

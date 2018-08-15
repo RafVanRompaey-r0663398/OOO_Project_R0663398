@@ -65,6 +65,10 @@ public class CategoryDetailPane extends GridPane {
 		this.descriptionField.clear();
 		return result;
 	}
+	
+	public String getCategorieText() {
+		return this.categoryField.getValue().toString();
+	}
 
 	public void clearFields() {
 		this.titleField.clear();

@@ -1,7 +1,6 @@
 package view.panels;
 
-import java.util.Observer;
-
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -14,11 +13,13 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class MessagePane extends GridPane {
 	private Button testButton;
+	private TestPopUp testPopUp;
 	
-	public MessagePane (){
+	public MessagePane (Controller controller, Stage primaryStage){
 	    setBorder(new Border(new BorderStroke(Color.BLACK, 
 	            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
@@ -30,11 +31,11 @@ public class MessagePane extends GridPane {
 		testButton.setOnAction(new EventHandler<ActionEvent>() { //TODO remove or generalize
 			
 			@Override
-			public void handle(ActionEvent event) {
+			public void handle(ActionEvent event) { 
+				testPopUp = new TestPopUp(primaryStage,null);
 			}
 		});
 		add(testButton, 0,1,1,1);
 		setHalignment(testButton, HPos.CENTER);
 	}
-
 }

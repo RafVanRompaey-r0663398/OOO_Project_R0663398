@@ -1,5 +1,8 @@
 package view.panels;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,9 +23,10 @@ public class QuestionDetailPane extends GridPane {
 	private Button btnAdd, btnRemove;
 	private ComboBox categoryField;
 	private Service service;
+	private List<String> statements;
 
 	public QuestionDetailPane(Service service) {
-		this.service=service;
+		this.service = service;
 		this.setPrefHeight(300);
 		this.setPrefWidth(320);
 
@@ -43,14 +47,14 @@ public class QuestionDetailPane extends GridPane {
 		statementsArea.setPrefRowCount(5);
 		statementsArea.setEditable(false);
 		add(statementsArea, 1, 2, 2, 5);
-
+		statements = new ArrayList<String>();
 		Pane addRemove = new HBox();
 		btnAdd = new Button("add");
-		btnAdd.setOnAction(new AddStatementListener());
+		btnAdd.setOnAction(new AddStatementListener(this));
 		addRemove.getChildren().add(btnAdd);
 
 		btnRemove = new Button("remove");
-		btnRemove.setOnAction(new RemoveStatementListener());
+		btnRemove.setOnAction(new RemoveStatementListener(this));
 		addRemove.getChildren().add(btnRemove);
 		add(addRemove, 1, 8, 2, 1);
 
@@ -83,14 +87,28 @@ public class QuestionDetailPane extends GridPane {
 	}
 
 	class AddStatementListener implements EventHandler<ActionEvent> {
+		private QuestionDetailPane QDP;
+
+		public AddStatementListener(QuestionDetailPane QDP) {
+			this.QDP = QDP;
+		}
+
 		@Override
 		public void handle(ActionEvent e) {
+			QDP.addStatementsAreaText();
 		}
 	}
 
 	class RemoveStatementListener implements EventHandler<ActionEvent> {
+		private QuestionDetailPane QDP;
+
+		public RemoveStatementListener(QuestionDetailPane QDP) {
+			this.QDP = QDP;
+		}
+
 		@Override
 		public void handle(ActionEvent e) {
+			QDP.removeStatementsAreaText();
 		}
 	}
 
@@ -100,7 +118,7 @@ public class QuestionDetailPane extends GridPane {
 		this.statementsArea.clear();
 		this.questionField.clear();
 	}
-	
+
 	public String getCategorieText() {
 		return this.categoryField.getValue().toString();
 	}
@@ -119,5 +137,28 @@ public class QuestionDetailPane extends GridPane {
 
 	public String getStatementsAreaText() {
 		return this.statementsArea.getText();
+	}
+
+	public void addStatementsAreaText() {
+		if (this.statementField.getText().isEmpty())
+			return;
+		this.statements.add(this.statementField.getText());
+		this.statementsArea.setText(this.statements.toString().replace('[', ' ').replace(']', ' ').replace(',', '\n'));
+	}
+
+	public void removeStatementsAreaText() {
+		if (this.statements.isEmpty())
+			return;
+		this.statements.remove(0);
+		if (this.statements.isEmpty()) {
+			this.statementsArea.setText("");
+		} else {
+			this.statementsArea
+					.setText(this.statements.toString().replace('[', ' ').replace(']', ' ').replace(',', '\n'));
+		}
+	}
+
+	public List<String> getStatements() {
+		return this.statements;
 	}
 }

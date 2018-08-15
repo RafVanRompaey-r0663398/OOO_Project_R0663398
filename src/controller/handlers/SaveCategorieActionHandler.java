@@ -21,7 +21,11 @@ public class SaveCategorieActionHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 		String title = this.CDPane.getPane().getTitleFieldString();
 		String description = this.CDPane.getPane().getDescriptionFieldString();
+		String mainCategorie = this.CDPane.getPane().getCategorieText();
+		if(mainCategorie == "No Main Category"){
 		categorie = new Categorie(title, description);
+		}
+		categorie = new Categorie(title, description,mainCategorie);
 		this.controller.getService().addCategory(categorie);
 		this.CDPane.closePopUp();
 	}

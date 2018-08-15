@@ -73,7 +73,7 @@ public class Controller {
 			/* ______________________ */
 
 			TestPane testPane = new TestPane();
-			MessagePane messagePane = new MessagePane();
+			MessagePane messagePane = new MessagePane(this,primaryStage);
 
 			Group root = new Group();
 			Scene scene = new Scene(root, 750, 400);
