@@ -2,6 +2,7 @@ package model.db;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +19,8 @@ public class DbVragenRepository{
 		 mockUp1list.add("strategy");
 		 mockUp1list.add("state");
 		 mockUp1list.add("singelton");
-		 mockUp1list.add("strategy");
-		Vraag mockUp1 = new Vraag("Welk patroon defineert een familie van algoritmes, kapselt ze in en maakt ze verwiselbaar?", "Design patterns", "Strategy", mockUp1list);
+		 mockUp1list.add("decorator");
+		Vraag mockUp1 = new Vraag("Welk patroon defineert een familie van algoritmes, kapselt ze in en maakt ze verwiselbaar?", "Design patterns", "strategy", mockUp1list);
 		this.addVraagToDb(mockUp1);
 		Vraag mockUp2 = new Vraag("Welk ontwerp principe is het minste van toepasing op het strategy patroon?","Design principes","singelton", mockUp1list);
 		this.addVraagToDb(mockUp2);

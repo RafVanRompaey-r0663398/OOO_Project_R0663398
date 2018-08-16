@@ -1,37 +1,31 @@
 package view.panels;
 
+import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class TestPopUp {
 
-	private TestPane pane;
-	private int heigth, legth;
-	private String title;
-	Stage stage = new Stage();
-	Stage primaryStage;
+	private TestPane testPane;
+	private Stage stage = new Stage();
+	private Stage primaryStage;
+	private Controller controller;
 
-	public TestPopUp(Stage primaryStage, TestPane pane) {
+	public TestPopUp(Stage primaryStage, Controller controller) {
 		this.primaryStage = primaryStage;
-		Scene scene = new Scene(pane, 750, 400);
-		stage.setTitle("de test");
+		this.testPane= new TestPane(controller);
+		this.setPane(testPane);
+		Scene scene = new Scene(testPane, 750, 400);
+		stage.setTitle("OO-Ontwerp test");
 		stage.setScene(scene);
 	}
 
 	public TestPane getPane() {
-		return this.pane;
+		return this.testPane;
 	}
 
 	private void setPane(TestPane pane) {
-		this.pane = pane;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	private void setTitle(String title) {
-		this.title = title;
+		this.testPane = pane;
 	}
 
 	public void showPopUp() {
@@ -42,6 +36,11 @@ public class TestPopUp {
 	public void closePopUp() {
 		stage.close();
 		primaryStage.show();
+	}
+	public void newQuestion(){
+		stage.close();
+		testPane.newQuestion();
+		stage.show();
 	}
 
 }

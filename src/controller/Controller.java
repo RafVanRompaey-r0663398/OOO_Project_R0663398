@@ -20,6 +20,7 @@ import view.panels.CDPPopUp;
 import view.panels.QuestionDetailPane;
 import view.panels.QuestionOverviewPane;
 import view.panels.TestPane;
+import view.panels.TestPopUp;
 
 public class Controller {
 
@@ -32,6 +33,8 @@ public class Controller {
 	private SaveVraagActionHandler saveVraagAction;
 	private CDPPopUp addCategorie;
 	private QDPPopUp addVraag;
+	private TestPopUp testPopUp;
+	private int vraagCounter;
 
 	public Controller() {
 		this.service = new Service();
@@ -39,6 +42,7 @@ public class Controller {
 		this.newVraagAction = new NewVraagActionHandler();
 		this.cancelCategorieAction = new CancelCategorieActionHandler();
 		this.cancelVraagAction = new CancelVraagActionHandler();
+		vraagCounter=0;
 	}
 
 	public void start(Stage primaryStage) {
@@ -52,6 +56,8 @@ public class Controller {
 
 			this.addCategorie = new CDPPopUp(categoryDetailPanel, "Category add", 200, 300);
 			this.addVraag = new QDPPopUp(questionDetailPane, "Question add", 300, 500);
+			this.testPopUp = new TestPopUp(primaryStage,this);
+
 			/* set new Categorie action handler */
 			newCategorieAction.setCategoryDetailPane(addCategorie);
 			categoryOverviewPanel.setNewAction(newCategorieAction);
@@ -72,9 +78,7 @@ public class Controller {
 			questionDetailPane.setSaveAction(saveVraagAction);
 			/* ______________________ */
 
-			TestPane testPane = new TestPane();
 			MessagePane messagePane = new MessagePane(this,primaryStage);
-
 			Group root = new Group();
 			Scene scene = new Scene(root, 750, 400);
 			BorderPane borderPane = new AssesMainPane(messagePane, categoryOverviewPanel, questionOverviewPane);
@@ -93,5 +97,16 @@ public class Controller {
 
 	public Service getService() {
 		return this.service;
+	}
+	
+	public TestPopUp getTestPopUp() {
+		return this.testPopUp;
+	}
+	public int getVraagCounter(){
+		return this.vraagCounter;
+	}
+	
+	public void setVraagCounter(int vraagCounter){
+		this.vraagCounter=vraagCounter;
 	}
 }

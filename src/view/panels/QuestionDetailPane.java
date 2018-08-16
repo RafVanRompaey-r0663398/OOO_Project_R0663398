@@ -21,7 +21,7 @@ public class QuestionDetailPane extends GridPane {
 	private TextArea statementsArea;
 	private TextField questionField, statementField, feedbackField;
 	private Button btnAdd, btnRemove;
-	private ComboBox categoryField;
+	private ComboBox<String> categoryField;
 	private Service service;
 	private List<String> statements;
 
@@ -59,7 +59,7 @@ public class QuestionDetailPane extends GridPane {
 		add(addRemove, 1, 8, 2, 1);
 
 		add(new Label("Category: "), 0, 9, 1, 1);
-		categoryField = new ComboBox();
+		categoryField = new ComboBox<String>();
 		categoryField.getItems().addAll(service.getMainCategorieObserverList());
 		add(categoryField, 1, 9, 2, 1);
 
@@ -149,7 +149,7 @@ public class QuestionDetailPane extends GridPane {
 	public void removeStatementsAreaText() {
 		if (this.statements.isEmpty())
 			return;
-		this.statements.remove(0);
+		this.statements.remove(this.statements.size()-1);
 		if (this.statements.isEmpty()) {
 			this.statementsArea.setText("");
 		} else {

@@ -2,7 +2,6 @@ package controller.handlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import view.panels.CDPPopUp;
 import view.panels.QDPPopUp;
 
 public class NewVraagActionHandler implements EventHandler<ActionEvent>{

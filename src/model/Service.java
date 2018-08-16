@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 import javafx.collections.ObservableList;
 import model.db.DbCategorieRepository;
 import model.db.DbVragenRepository;
