@@ -2,17 +2,15 @@ package model.db;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Categorie;
 import model.Vraag;
 
 public class DbVragenRepository{
 	
-	private List list = new ArrayList<Vraag>();
-	private ObservableList oList = FXCollections.observableArrayList(list);
+	private List<Vraag> list = new ArrayList<Vraag>();
+	private ObservableList<Vraag> oList = FXCollections.observableArrayList(list);
 	
 	public DbVragenRepository(){
 		 List<String> mockUp1list = new ArrayList<String>();
@@ -20,9 +18,15 @@ public class DbVragenRepository{
 		 mockUp1list.add("state");
 		 mockUp1list.add("singelton");
 		 mockUp1list.add("decorator");
-		Vraag mockUp1 = new Vraag("Welk patroon defineert een familie van algoritmes, kapselt ze in en maakt ze verwiselbaar?", "Design patterns", "strategy", mockUp1list);
+		Vraag mockUp1 = new Vraag("Welk patroon defineert een familie van algoritmes, kapselt ze in en maakt ze verwiselbaar?", "Design patterns", "je moet elke patroon dat we in de lessen gezien hebben kunnen toe passen","strategy", mockUp1list);
 		this.addVraagToDb(mockUp1);
-		Vraag mockUp2 = new Vraag("Welk ontwerp principe is het minste van toepasing op het strategy patroon?","Design principes","singelton", mockUp1list);
+		 List<String> mockUp2list = new ArrayList<String>();
+		 mockUp2list.add("SRP");
+		 mockUp2list.add("OCP");
+		 mockUp2list.add("LSP");
+		 mockUp2list.add("ISP");
+		 mockUp2list.add("DIP");
+		Vraag mockUp2 = new Vraag("Welk ontwerp principe is het minste van toepasing op het strategy patroon?","Design principles","voor elk patroon moet je kunnen aangeven in welke mate een principe van toepassing is.","SRP", mockUp2list);
 		this.addVraagToDb(mockUp2);
 		
 	}

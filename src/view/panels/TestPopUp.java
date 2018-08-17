@@ -1,5 +1,4 @@
 package view.panels;
-
 import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,10 +9,11 @@ public class TestPopUp {
 	private Stage stage = new Stage();
 	private Stage primaryStage;
 	private Controller controller;
-
-	public TestPopUp(Stage primaryStage, Controller controller) {
+	
+	public TestPopUp(Stage primaryStage, TestPane testPane,Controller controller) {
+		this.controller=controller;
 		this.primaryStage = primaryStage;
-		this.testPane= new TestPane(controller);
+		this.testPane= testPane;
 		this.setPane(testPane);
 		Scene scene = new Scene(testPane, 750, 400);
 		stage.setTitle("OO-Ontwerp test");
@@ -29,18 +29,17 @@ public class TestPopUp {
 	}
 
 	public void showPopUp() {
-		primaryStage.hide();
+		primaryStage.close();
 		stage.show();
 	}
 
 	public void closePopUp() {
 		stage.close();
+		this.controller.getMessagePane().refresh();
 		primaryStage.show();
 	}
 	public void newQuestion(){
-		stage.close();
 		testPane.newQuestion();
-		stage.show();
 	}
 
 }

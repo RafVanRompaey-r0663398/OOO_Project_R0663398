@@ -36,10 +36,10 @@ public class TestPane extends GridPane {
 		questionField = new Label();
 		questionField.setText(vraag.getQuestion());
 		add(questionField, 0, 0, 1, 1);
-
+		
+		
 		statementGroup = new ToggleGroup();
-		for (int i = 0; i < controller.getService().getVragenObserverList().get(controller.getVraagCounter())
-				.getAntwoorden().size(); i++) {
+		for (int i = 0; i < controller.getService().getVragenObserverList().get(controller.getVraagCounter()).getAntwoorden().size(); i++) {
 			RadioButton radioButton = new RadioButton();
 			radioButton.setText((vraag.getAntwoorden().get(i)));
 			radioButton.setUserData(vraag.getAntwoorden().get(i));

@@ -34,7 +34,6 @@ public class QuestionOverviewPane extends GridPane {
         descriptionCol.setCellValueFactory(new PropertyValueFactory("category"));
         table.getColumns().add(descriptionCol);
         table.setItems(service.getVragenObserverList());
-        System.out.println(service.getVragenObserverList());
 		this.add(table, 0, 1, 2, 6);
 		
 		btnNew = new Button("New");

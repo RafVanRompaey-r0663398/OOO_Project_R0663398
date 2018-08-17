@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Map;
-
 import javafx.collections.ObservableList;
 import model.db.DbCategorieRepository;
 import model.db.DbVragenRepository;
@@ -10,10 +8,12 @@ public class Service {
 	
 	private DbCategorieRepository categorie;
 	private DbVragenRepository vragen;
+	private Evaluatie evaluatie;
 	
 	public Service(){
 		this.setCategorie(new DbCategorieRepository());
 		this.setVragen(new DbVragenRepository());
+		this.setEvaluatie(new Evaluatie(vragen));
 	}
 
 	public DbCategorieRepository getCategorie() {
@@ -30,6 +30,14 @@ public class Service {
 	
 	private void setVragen(DbVragenRepository vragen) {
 		this.vragen = vragen;
+	}
+	
+	public Evaluatie getEvaluatie() {
+		return this.evaluatie;
+	}
+	
+	private void setEvaluatie(Evaluatie evaluatie) {
+		this.evaluatie = evaluatie;
 	}
 	
 	public ObservableList<Categorie> getCategorieObserverList(){

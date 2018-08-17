@@ -1,5 +1,7 @@
 package model;
 
+import model.exceptions.ModelException;
+
 public class Categorie {
 	
 	private String title,description,mainCategory;

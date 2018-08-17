@@ -6,7 +6,7 @@ import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.Vraag;
-import model.VraagFactory;
+import model.vraag.VraagFactory;
 import view.panels.QDPPopUp;
 
 public class SaveVraagActionHandler implements EventHandler<ActionEvent> {
@@ -25,9 +25,10 @@ public class SaveVraagActionHandler implements EventHandler<ActionEvent> {
 		String vraag = QDPane.getPane().getQuestionText();
 		String categorie = QDPane.getPane().getCategorieText();
 		String feedback = QDPane.getPane().getFeedbackText();
+		String correct = QDPane.getPane().getStatementText();
 		List<String> antwoorden = QDPane.getPane().getStatements();
 		
-		Vraag result = vraagfactory.createVraag(vraag, categorie, feedback, antwoorden);
+		Vraag result = vraagfactory.createVraag(vraag, categorie, feedback,correct, antwoorden);
 		controller.getService().addVraag(result);
 		QDPane.getPane().clearFields();
 		QDPane.closePopUp();

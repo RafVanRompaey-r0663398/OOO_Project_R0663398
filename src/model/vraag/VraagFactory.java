@@ -1,7 +1,10 @@
-package model;
+package model.vraag;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Vraag;
+import model.exceptions.ModelException;
 
 public class VraagFactory {
 
@@ -9,13 +12,13 @@ public class VraagFactory {
 
 	}
 
-	public Vraag createVraag(String question, String category, String feedback, List<String> antwoorden) {
+	public Vraag createVraag(String question, String category, String feedback,String correct, List<String> antwoorden) {
 		Vraag vraag = null;
 		String type = TypeVraag(antwoorden);
 		if (type == "YesNoQuestion") {
-			vraag = new YesNoVraag(question, category, feedback, antwoorden);
+			vraag = new YesNoVraag(question, category, feedback, correct, antwoorden);
 		} else if (type == "MultipleChoiceQuestion") {
-			vraag = new MultipleChoiceVraag(question, category, feedback, antwoorden);
+			vraag = new MultipleChoiceVraag(question, category, feedback,correct, antwoorden);
 		} else {
 			throw new ModelException("not suported type");
 		}

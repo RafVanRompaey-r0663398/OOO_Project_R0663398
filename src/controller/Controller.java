@@ -25,6 +25,7 @@ import view.panels.TestPopUp;
 public class Controller {
 
 	private Service service;
+	private MessagePane messagePane;
 	private NewCatgeorieActionHandler newCategorieAction;
 	private NewVraagActionHandler newVraagAction;
 	private CancelCategorieActionHandler cancelCategorieAction;
@@ -56,7 +57,7 @@ public class Controller {
 
 			this.addCategorie = new CDPPopUp(categoryDetailPanel, "Category add", 200, 300);
 			this.addVraag = new QDPPopUp(questionDetailPane, "Question add", 300, 500);
-			this.testPopUp = new TestPopUp(primaryStage,this);
+			
 
 			/* set new Categorie action handler */
 			newCategorieAction.setCategoryDetailPane(addCategorie);
@@ -78,7 +79,9 @@ public class Controller {
 			questionDetailPane.setSaveAction(saveVraagAction);
 			/* ______________________ */
 
-			MessagePane messagePane = new MessagePane(this,primaryStage);
+			messagePane = new MessagePane(this,primaryStage);
+			TestPane testPane = new TestPane(this);
+			this.testPopUp = new TestPopUp(primaryStage,testPane,this);
 			Group root = new Group();
 			Scene scene = new Scene(root, 750, 400);
 			BorderPane borderPane = new AssesMainPane(messagePane, categoryOverviewPanel, questionOverviewPane);
@@ -90,6 +93,7 @@ public class Controller {
 			primaryStage.sizeToScene();
 
 			primaryStage.show();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -97,6 +101,13 @@ public class Controller {
 
 	public Service getService() {
 		return this.service;
+	}
+	
+	public MessagePane getMessagePane() {
+		return this.messagePane;
+	}
+	
+	public void refreshmesagePane() {
 	}
 	
 	public TestPopUp getTestPopUp() {
