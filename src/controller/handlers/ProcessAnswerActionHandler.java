@@ -12,23 +12,18 @@ public class ProcessAnswerActionHandler implements EventHandler<ActionEvent> {
 	private TestPane testPane;
 	private Controller controller;
 	private int vraagCounter;
-	private Vraag vraag;
-	private Evaluatie evaluatie;
 
 	public ProcessAnswerActionHandler(TestPane testPane, Controller controller) {
 		this.testPane=testPane;
 		this.controller=controller;
 		this.vraagCounter=controller.getVraagCounter();
-		this.vraag = controller.getService().getVragenObserverList().get(vraagCounter);
-		this.evaluatie = controller.getService().getEvaluatie();
 	}
 
 	@Override
 	public void handle(ActionEvent event) {
 		String antwoord = testPane.getSelectedStatements().toString().replace('[', ' ').replace(']', ' ');
-		if(this.evaluatie.isJuistAntwoord(antwoord, vraag.getCorrect())){
-			System.out.println("juist");
-			this.evaluatie.determineScore(vraag, true);
+		if(this.controller.getService().getEvaluatie().isJuistAntwoord(antwoord, controller.getVraagCurrent().getCorrect())){
+			this.controller.getService().getEvaluatie().determineScore(controller.getVraagCurrent(), true);
 			if(vraagCounter+1==controller.getService().getVragenObserverList().size()){
 				this.closeTest();
 			}
@@ -37,8 +32,7 @@ public class ProcessAnswerActionHandler implements EventHandler<ActionEvent> {
 			}
 		}
 		else{
-			System.out.println("fout");
-			this.evaluatie.determineScore(vraag, false);
+			this.controller.getService().getEvaluatie().determineScore(controller.getVraagCurrent(), false);
 			if(vraagCounter+1==controller.getService().getVragenObserverList().size()){
 				this.closeTest();
 			}

@@ -16,22 +16,21 @@ public class Evaluatie {
 	private List<Vraag> juist, fout;
 	private ObservableList<Vraag> oListJuist, oListFout;
 	private int aantalVragen;
-	private DbVragenRepository vragen;
+	private Service service;
 
 	private State state;
 	private State takingTest;
 	private State NoTakenTest;
 	private State ResultState;
-	
 
-	public Evaluatie(DbVragenRepository vragen) {
-		this.vragen = vragen;
+	public Evaluatie(Service service) {
+		this.service = service;
 		juist = new ArrayList<Vraag>();
 		oListJuist = FXCollections.observableArrayList(juist);
 		fout = new ArrayList<Vraag>();
 		oListFout = FXCollections.observableArrayList(fout);
-		this.setAantalVragen(vragen.getOList().size());
-		
+		this.setAantalVragen(service.getVragen().getOList().size());
+
 		this.takingTest = new TakingTestState();
 		this.NoTakenTest = new NoTakenTestState();
 		this.ResultState = new TestResultState();
@@ -65,18 +64,18 @@ public class Evaluatie {
 	public void setAantalVragen(int aantalVragen) {
 		this.aantalVragen = aantalVragen;
 	}
-	
+
 	public void StartTest() {
 		this.juist.clear();
 		this.fout.clear();
 		this.oListJuist.clear();
 		this.oListFout.clear();
-		
-		this.state=this.takingTest;
+
+		this.state = this.takingTest;
 	}
-	
+
 	public void EndTest() {
-		this.state=this.ResultState;
+		this.state = this.ResultState;
 	}
 
 	public void determineScore(Vraag vraag, Boolean juistantwoord) {
@@ -97,22 +96,36 @@ public class Evaluatie {
 	}
 
 	public String ScoreText() {
-		return "Your score: " + juist.size() + "/" + this.aantalVragen + "\n" + this.CategoryText();
+		return "Your score: " + juist.size() + "/" + this.aantalVragen + "\n" + this.CategoryScoreOverviewText();
 	}
 
-	public String CategoryText() {
+	public String CategoryScoreOverviewText() {
 		String result = "";
-		for (int i = 0; i < this.aantalVragen; i++) {
-			if(!result.contains(vragen.getOList().get(i).getCategory())){
-				result += "Category "+vragen.getOList().get(i).getCategory()+":\n";
+		for (int i = 1; i < this.service.getCategorie().getOListMainCategories().size(); i++) {
+			int countjuist = 0;
+			int countfout = 0;
+			for (int j = 0; j < this.oListJuist.size(); j++) {
+				if (this.oListJuist.get(j).getCategory()
+						.equals(this.service.getCategorie().getOListMainCategories().get(i))) {
+					countjuist++;
+				}
 			}
+			for (int k = 0; k < this.oListFout.size(); k++) {
+				if (this.oListFout.get(k).getCategory()
+						.equals(this.service.getCategorie().getOListMainCategories().get(i))) {
+					countfout++;
+				}
+			}
+			result += "catgeory " + this.service.getCategorie().getOListMainCategories().get(i) + ": " + countjuist
+					+ "/" + (countfout + countjuist) + "\n";
 		}
 		return result;
 	}
+
 	public String feedbackText() {
 		String result = "";
 		for (int i = 0; i < this.fout.size(); i++) {
-				result +=fout.get(i).getFeedback()+"\n";
+			result += fout.get(i).getFeedback() + "\n";
 		}
 		return result;
 	}

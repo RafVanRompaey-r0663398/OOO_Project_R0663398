@@ -13,7 +13,7 @@ public class Service {
 	public Service(){
 		this.setCategorie(new DbCategorieRepository());
 		this.setVragen(new DbVragenRepository());
-		this.setEvaluatie(new Evaluatie(vragen));
+		this.setEvaluatie(new Evaluatie(this));
 	}
 
 	public DbCategorieRepository getCategorie() {

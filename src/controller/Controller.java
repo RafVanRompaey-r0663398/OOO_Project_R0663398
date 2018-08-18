@@ -10,7 +10,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Evaluatie;
 import model.Service;
+import model.Vraag;
 import view.panels.AssesMainPane;
 import view.panels.CategoryDetailPane;
 import view.panels.CategoryOverviewPane;
@@ -50,10 +52,10 @@ public class Controller {
 
 		try {
 			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.service);
-			QuestionDetailPane questionDetailPane = new QuestionDetailPane(this.service);
+			QuestionDetailPane questionDetailPane = new QuestionDetailPane(this);
 
 			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(this.service);
-			CategoryDetailPane categoryDetailPanel = new CategoryDetailPane(this.service);
+			CategoryDetailPane categoryDetailPanel = new CategoryDetailPane(this);
 
 			this.addCategorie = new CDPPopUp(categoryDetailPanel, "Category add", 200, 300);
 			this.addVraag = new QDPPopUp(questionDetailPane, "Question add", 300, 500);
@@ -107,9 +109,6 @@ public class Controller {
 		return this.messagePane;
 	}
 	
-	public void refreshmesagePane() {
-	}
-	
 	public TestPopUp getTestPopUp() {
 		return this.testPopUp;
 	}
@@ -119,5 +118,11 @@ public class Controller {
 	
 	public void setVraagCounter(int vraagCounter){
 		this.vraagCounter=vraagCounter;
+	}
+	public Evaluatie getEvaluatie(){
+		return this.getService().getEvaluatie();
+	}
+	public Vraag getVraagCurrent(){
+		return this.getService().getVragenObserverList().get(vraagCounter);
 	}
 }

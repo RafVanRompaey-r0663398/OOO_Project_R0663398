@@ -1,5 +1,6 @@
 package view.panels;
 
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,10 +15,10 @@ public class CategoryDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
 	private TextField titleField, descriptionField;
 	private ComboBox<String> categoryField;
-	private Service service;
+	private Controller controller;
 
-	public CategoryDetailPane(Service service) {
-		this.service=service;
+	public CategoryDetailPane(Controller controller) {
+		this.controller=controller;
 		this.setPrefHeight(150);
 		this.setPrefWidth(300);
 
@@ -35,7 +36,7 @@ public class CategoryDetailPane extends GridPane {
 
 		this.add(new Label("Main Category:"), 0, 2, 1, 1);
 		categoryField = new ComboBox<String>();
-		categoryField.getItems().addAll(service.getMainCategorieObserverList());
+		categoryField.getItems().addAll(controller.getService().getMainCategorieObserverList());
 		this.add(categoryField, 1, 2, 1, 1);
 
 		btnCancel = new Button("Cancel");

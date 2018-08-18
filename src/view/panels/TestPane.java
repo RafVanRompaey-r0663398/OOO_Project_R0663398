@@ -20,11 +20,9 @@ public class TestPane extends GridPane {
 	private Button submitButton;
 	private ToggleGroup statementGroup;
 	private Controller controller;
-	private Vraag vraag;
 	private ProcessAnswerActionHandler processAnswerActionHandler;
 
 	public TestPane(Controller controller) {
-		vraag = controller.getService().getVragenObserverList().get(controller.getVraagCounter());
 		this.controller = controller;
 		this.setPrefHeight(300);
 		this.setPrefWidth(750);
@@ -34,15 +32,15 @@ public class TestPane extends GridPane {
 		this.setHgap(5);
 
 		questionField = new Label();
-		questionField.setText(vraag.getQuestion());
+		questionField.setText(controller.getVraagCurrent().getQuestion());
 		add(questionField, 0, 0, 1, 1);
 		
 		
 		statementGroup = new ToggleGroup();
 		for (int i = 0; i < controller.getService().getVragenObserverList().get(controller.getVraagCounter()).getAntwoorden().size(); i++) {
 			RadioButton radioButton = new RadioButton();
-			radioButton.setText((vraag.getAntwoorden().get(i)));
-			radioButton.setUserData(vraag.getAntwoorden().get(i));
+			radioButton.setText((controller.getVraagCurrent().getAntwoorden().get(i)));
+			radioButton.setUserData(controller.getVraagCurrent().getAntwoorden().get(i));
 			radioButton.setToggleGroup(statementGroup);
 			add(radioButton, 0, 2 + i, 1, 1);
 		}
@@ -67,7 +65,7 @@ public class TestPane extends GridPane {
 
 	public void newQuestion() {
 		this.getChildren().clear();
-		vraag = controller.getService().getVragenObserverList().get(controller.getVraagCounter());
+		Vraag vraag = controller.getVraagCurrent();
 		this.setPrefHeight(300);
 		this.setPrefWidth(750);
 

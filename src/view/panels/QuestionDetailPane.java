@@ -3,6 +3,7 @@ package view.panels;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,11 +23,11 @@ public class QuestionDetailPane extends GridPane {
 	private TextField questionField, statementField, feedbackField;
 	private Button btnAdd, btnRemove;
 	private ComboBox<String> categoryField;
-	private Service service;
 	private List<String> statements;
+	private Controller controller;
 
-	public QuestionDetailPane(Service service) {
-		this.service = service;
+	public QuestionDetailPane(Controller controller) {
+		this.controller = controller;
 		this.setPrefHeight(300);
 		this.setPrefWidth(320);
 
@@ -60,7 +61,7 @@ public class QuestionDetailPane extends GridPane {
 
 		add(new Label("Category: "), 0, 9, 1, 1);
 		categoryField = new ComboBox<String>();
-		categoryField.getItems().addAll(service.getMainCategorieObserverList());
+		categoryField.getItems().addAll(controller.getService().getMainCategorieObserverList());
 		add(categoryField, 1, 9, 2, 1);
 
 		add(new Label("Feedback: "), 0, 10, 1, 1);
