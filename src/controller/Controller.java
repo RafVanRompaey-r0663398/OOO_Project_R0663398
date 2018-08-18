@@ -1,3 +1,6 @@
+/*@author  Van_Rompaey_Raf-r0663398
+ * git-rep = https://github.com/RafVanRompaey-r0663398/Project-Herkansing_R0663398.git
+ * */
 package controller;
 
 import controller.handlers.CancelCategorieActionHandler;
@@ -51,10 +54,10 @@ public class Controller {
 	public void start(Stage primaryStage) {
 
 		try {
-			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.service);
+			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this);
 			QuestionDetailPane questionDetailPane = new QuestionDetailPane(this);
 
-			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(this.service);
+			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(this);
 			CategoryDetailPane categoryDetailPanel = new CategoryDetailPane(this);
 
 			this.addCategorie = new CDPPopUp(categoryDetailPanel, "Category add", 200, 300);

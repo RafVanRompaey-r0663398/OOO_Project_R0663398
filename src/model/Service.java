@@ -1,3 +1,6 @@
+/*@author  Van_Rompaey_Raf-r0663398
+ * git-rep = https://github.com/RafVanRompaey-r0663398/Project-Herkansing_R0663398.git
+ * */
 package model;
 
 import javafx.collections.ObservableList;
@@ -9,11 +12,13 @@ public class Service {
 	private DbCategorieRepository categorie;
 	private DbVragenRepository vragen;
 	private Evaluatie evaluatie;
+	private PropertiesReader props;
 	
 	public Service(){
 		this.setCategorie(new DbCategorieRepository());
 		this.setVragen(new DbVragenRepository());
 		this.setEvaluatie(new Evaluatie(this));
+		this.setProps(new PropertiesReader() );
 	}
 
 	public DbCategorieRepository getCategorie() {
@@ -40,6 +45,14 @@ public class Service {
 		this.evaluatie = evaluatie;
 	}
 	
+	public PropertiesReader getProps() {
+		return props;
+	}
+
+	public void setProps(PropertiesReader props) {
+		this.props = props;
+	}
+
 	public ObservableList<Categorie> getCategorieObserverList(){
 		return this.categorie.getOList();
 	}

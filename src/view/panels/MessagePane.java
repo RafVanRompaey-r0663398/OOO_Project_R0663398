@@ -1,3 +1,6 @@
+/*@author  Van_Rompaey_Raf-r0663398
+ * git-rep = https://github.com/RafVanRompaey-r0663398/Project-Herkansing_R0663398.git
+ * */
 package view.panels;
 
 import controller.Controller;
@@ -21,7 +24,6 @@ import model.PropertiesReader;
 public class MessagePane extends GridPane {
 	private Button testButton;
 	private Controller controller;
-	private PropertiesReader props = new PropertiesReader();
 
 	public MessagePane(Controller controller, Stage primaryStage) {
 		this.controller = controller;
@@ -65,7 +67,7 @@ public class MessagePane extends GridPane {
 			if (controller.getService().getEvaluatie().getFout().size() == 0) {
 				label.setText("Schitterend! Alles perfect!");
 			} else {
-				if (props.getProperties().getProperty("evaluation.mode").contains("score")) {
+				if (controller.getService().getProps().getProperties().getProperty("evaluation.mode").contains("score")) {
 					label.setText(controller.getService().getEvaluatie().ScoreText());
 				} else {
 					label.setText(controller.getService().getEvaluatie().feedbackText());
